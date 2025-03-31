@@ -1,0 +1,77 @@
+.my-lands-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.lands-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.land-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    width: 280px;  /* ✅ Fixed width */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word; /* ✅ Ensure long text wraps */
+    overflow: hidden;
+}
+
+.land-card:hover {
+    transform: scale(1.03);
+}
+
+.land-card h3 {
+    margin: 0;
+    color: #333;
+    font-size: 18px;
+    word-break: break-word; /* ✅ Prevents overflow */
+}
+
+.land-card p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #555;
+    word-break: break-word; /* ✅ Ensures text wraps properly */
+}
+
+.land-card a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis; /* ✅ Truncates long URLs */
+    white-space: nowrap;
+}
+
+.land-card a:hover {
+    text-decoration: underline;
+}
+
+.sale-info {
+    background: #ffeeba;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 13px;
+    color: #856404;
+    margin-top: 10px;
+}
+
+/* ✅ Ensure long addresses don't break layout */
+.truncate {
+    max-width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

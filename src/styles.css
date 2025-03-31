@@ -1,0 +1,128 @@
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #6c5ed6, #9f48ab, #cd586b);
+    color: white;
+    text-align: center;
+}
+
+/* Navbar Styling */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Left Side: Logo & Project Name */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo {
+    height: 100px; /* Adjust the size */
+    margin-right: 10px;
+}
+
+.navbar-title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* Right Side: Navigation Links */
+.nav-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+}
+
+/* Main Container */
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 40px;
+}
+
+/* Headings */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Input Container */
+.input-container {
+    margin-top: 20px;
+}
+
+/* Input Styling */
+input {
+    padding: 12px;
+    width: 250px;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    font-size: 16px;
+}
+
+/* Button Styling */
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    background: #007BFF;
+    color: white;
+    margin-left: 10px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .navbar-brand {
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        padding-top: 10px;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+}
