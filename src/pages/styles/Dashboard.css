@@ -1,0 +1,19 @@
+.dashboard-container {
+    text-align: center;
+    padding: 40px;
+    /*background: linear-gradient(135deg, #007bff, #00c6ff);*/
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffeb3b;
+}
