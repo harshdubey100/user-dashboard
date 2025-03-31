@@ -5,6 +5,7 @@ import React from "react";
  import "./styles.css";
  import LandDetails from "./pages/LandDetails";
  import MyLands from "./pages/MyLands";
+import LandSale from "./pages/LandSale";
  
  const App = () => {
      return (
@@ -14,6 +15,7 @@ import React from "react";
                  <Route path="/" element={<Dashboard />} />
                  <Route path="/my-lands" element={<MyLands />} />
                  <Route path="/LandDetails" element={<LandDetails />} />
+                 <Route path="/LandSale" element={<LandSale />} />
              </Routes>
          </Router>
      );

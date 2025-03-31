@@ -15,6 +15,7 @@ import React from "react";
                  <li><Link to="/">Dashboard</Link></li>
                  <li><Link to="/my-lands">My Lands</Link></li>
                  <li><Link to="/LandDetails">LandDetails</Link></li>
+                 <li><Link to="/LandSale">LandSale</Link></li>
              </ul>
          </nav>
      );
