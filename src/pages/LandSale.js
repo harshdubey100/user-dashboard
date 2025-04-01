@@ -4,26 +4,28 @@ import { getContract } from "../services/contract"; // Assuming you have a contr
 
 const LandSale = () => {
   const [lands, setLands] = useState([]);
-  const [selectedTokenId, setSelectedTokenId] = useState("");
   const [buyerAddress, setBuyerAddress] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
-  const [isSaleInProgress, setIsSaleInProgress] = useState(false);
 
-  // Fetch user's owned lands
+  // Fetch user's owned lands and their sale status
   const fetchLands = async () => {
     try {
       const { contract, signer } = await getContract();
       if (!signer) throw new Error("Signer is undefined. Please connect MetaMask.");
-
+  
       const userAddress = await signer.getAddress();
       const ownedTokenIds = await contract.getLandsByOwner(userAddress);
-      
+  
       const userLands = [];
       for (let tokenId of ownedTokenIds) {
         const landDetails = await contract.getLandDetails(tokenId);
+        const approvedBuyer = landDetails[5]; // `approvedBuyer` is the 6th value returned
+        const isForSale = approvedBuyer !== ethers.ZeroAddress && approvedBuyer !== "0x0000000000000000000000000000000000000000";
+  
         userLands.push({
           tokenId: tokenId.toString(),
           location: landDetails[1],
+          isForSale,
         });
       }
       setLands(userLands);
@@ -32,13 +34,14 @@ const LandSale = () => {
       setStatusMessage("Error fetching lands.");
     }
   };
+  
 
   useEffect(() => {
     fetchLands();
   }, []);
 
-  const handleInitiateSale = async () => {
-    if (!selectedTokenId) {
+  const handleInitiateSale = async (tokenId) => {
+    if (!tokenId) {
       setStatusMessage("Please select a land to sell.");
       return;
     }
@@ -54,34 +57,30 @@ const LandSale = () => {
 
       setStatusMessage("Initiating sale...");
 
-      const tx = await contract.sell(selectedTokenId, buyerAddress);
+      const tx = await contract.sell(tokenId, buyerAddress);
       await tx.wait();
 
       setStatusMessage(`Sale initiated successfully! Buyer: ${buyerAddress}`);
-      setIsSaleInProgress(true);
+
+      fetchLands(); // Refresh the land list to update sale status
     } catch (error) {
       setStatusMessage("Error initiating sale.");
       console.error(error);
     }
   };
 
-  const handleCancelSale = async () => {
-    if (!selectedTokenId) {
-      setStatusMessage("Please select a land to cancel the sale.");
-      return;
-    }
-
+  const handleCancelSale = async (tokenId) => {
     try {
       const { contract, signer } = await getContract();
       if (!signer) throw new Error("Signer is undefined. Please connect MetaMask.");
 
       setStatusMessage("Canceling sale...");
 
-      const tx = await contract.cancelSale(selectedTokenId);
+      const tx = await contract.cancelSale(tokenId);
       await tx.wait();
 
       setStatusMessage("Sale canceled successfully.");
-      setIsSaleInProgress(false);
+      fetchLands(); // Refresh the land list to update sale status
     } catch (error) {
       setStatusMessage("Error canceling sale.");
       console.error(error);
@@ -92,43 +91,26 @@ const LandSale = () => {
     <div className="land-sale-container">
       <h3>Land Sale Management</h3>
       
-      {/* Land Selection Dropdown */}
-      <div>
-        <label>Select Land to Sell:</label>
-        <select
-          value={selectedTokenId}
-          onChange={(e) => setSelectedTokenId(e.target.value)}
-        >
-          <option value="">-- Select Land --</option>
-          {lands.map((land) => (
-            <option key={land.tokenId} value={land.tokenId}>
-              {land.location} (Token ID: {land.tokenId})
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {/* Buyer Address Input */}
-      <div>
-        <input
-          type="text"
-          value={buyerAddress}
-          onChange={(e) => setBuyerAddress(e.target.value)}
-          placeholder="Enter buyer address"
-        />
-      </div>
-
-      {/* Sale Control Buttons */}
-      {isSaleInProgress ? (
-        <div>
-          <p>Land is listed for sale.</p>
-          <button onClick={handleCancelSale}>Cancel Sale</button>
-        </div>
-      ) : (
-        <div>
-          <button onClick={handleInitiateSale}>Initiate Sale</button>
-        </div>
-      )}
+      <ul>
+        {lands.map((land) => (
+          <li key={land.tokenId}>
+            {land.location} (Token ID: {land.tokenId})
+            {land.isForSale ? (
+              <span> - Land with NFT ID {land.tokenId} is initiated for sale. <button onClick={() => handleCancelSale(land.tokenId)}>Cancel Sale</button></span>
+            ) : (
+              <div>
+                <input
+                  type="text"
+                  value={buyerAddress}
+                  onChange={(e) => setBuyerAddress(e.target.value)}
+                  placeholder="Enter buyer address"
+                />
+                <button onClick={() => handleInitiateSale(land.tokenId)}>Initiate Sale</button>
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
 
       {/* Status Message */}
       {statusMessage && <p>{statusMessage}</p>}

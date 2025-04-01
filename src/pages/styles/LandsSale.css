@@ -1,0 +1,91 @@
+/* General Container */
+.land-sale-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .land-sale-container h3 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* List of Lands */
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  li span {
+    color: #28a745;
+    font-weight: bold;
+  }
+  
+  li button {
+    padding: 8px 12px;
+    margin-left: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  li button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Input for Buyer Address */
+  li input {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 180px;
+  }
+  
+  li input:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  
+  li div {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Status Message */
+  p {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 20px;
+    color: #d9534f;
+  }
+  
+  p.success {
+    color: #5bc0de;
+  }
+  
+  p.error {
+    color: #d9534f;
+  }
+  
