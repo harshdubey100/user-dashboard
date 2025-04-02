@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { getContract } from "../services/contract"; // Assuming you have a contract service to get the contract instance
-
+import "./styles/LandsSale.css";
 const LandSale = () => {
   const [lands, setLands] = useState([]);
   const [buyerAddress, setBuyerAddress] = useState("");
@@ -88,33 +88,49 @@ const LandSale = () => {
   };
 
   return (
-    <div className="land-sale-container">
-      <h3>Land Sale Management</h3>
-      
-      <ul>
-        {lands.map((land) => (
-          <li key={land.tokenId}>
-            {land.location} (Token ID: {land.tokenId})
-            {land.isForSale ? (
-              <span> - Land with NFT ID {land.tokenId} is initiated for sale. <button onClick={() => handleCancelSale(land.tokenId)}>Cancel Sale</button></span>
-            ) : (
-              <div>
-                <input
-                  type="text"
-                  value={buyerAddress}
-                  onChange={(e) => setBuyerAddress(e.target.value)}
-                  placeholder="Enter buyer address"
-                />
-                <button onClick={() => handleInitiateSale(land.tokenId)}>Initiate Sale</button>
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
+    <div className="land-sale-section-container">
+            <h3 className="land-sale-section-title">Land Sale Management</h3>
 
-      {/* Status Message */}
-      {statusMessage && <p>{statusMessage}</p>}
-    </div>
+            <ul className="land-sale-section-list">
+                {lands.map((land) => (
+                    <li key={land.tokenId} className="land-sale-section-item">
+                        <span className="land-sale-section-location">
+                            {land.location} (Token ID: {land.tokenId})
+                        </span>
+                        {land.isForSale ? (
+                            <span className="land-sale-section-sale-info">
+                                - Land with NFT ID {land.tokenId} is initiated for sale.
+                                <button
+                                    className="land-sale-section-cancel-btn"
+                                    onClick={() => handleCancelSale(land.tokenId)}
+                                >
+                                    Cancel Sale
+                                </button>
+                            </span>
+                        ) : (
+                            <div className="land-sale-section-sale-input">
+                                <input
+                                    type="text"
+                                    value={buyerAddress}
+                                    onChange={(e) => setBuyerAddress(e.target.value)}
+                                    placeholder="Enter buyer address"
+                                    className="land-sale-section-input"
+                                />
+                                <button
+                                    className="land-sale-section-initiate-btn"
+                                    onClick={() => handleInitiateSale(land.tokenId)}
+                                >
+                                    Initiate Sale
+                                </button>
+                            </div>
+                        )}
+                    </li>
+                ))}
+            </ul>
+
+            {/* Status Message */}
+            {statusMessage && <p className="land-sale-section-status">{statusMessage}</p>}
+        </div>
   );
 };
 

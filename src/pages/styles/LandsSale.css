@@ -1,91 +1,97 @@
 /* General Container */
-.land-sale-container {
-    max-width: 800px;
-    margin: 0 auto;
+.land-sale-section-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.land-sale-section-title {
+    max-width: 900px;
+    font-size: 2.5rem;
+    font-family: 'Poppins', sans-serif;
+    margin: auto;
     padding: 20px;
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .land-sale-container h3 {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  /* List of Lands */
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    background-color: #ffffff;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  li span {
-    color: #28a745;
-    font-weight: bold;
-  }
-  
-  li button {
-    padding: 8px 12px;
-    margin-left: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  li button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Input for Buyer Address */
-  li input {
-    padding: 8px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    width: 180px;
-  }
-  
-  li input:focus {
-    outline: none;
-    border-color: #007bff;
-  }
-  
-  li div {
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Status Message */
-  p {
-    text-align: center;
-    font-size: 16px;
-    margin-top: 20px;
-    color: #d9534f;
-  }
-  
-  p.success {
-    color: #5bc0de;
-  }
-  
-  p.error {
-    color: #d9534f;
-  }
-  
+}
+
+/* List of Lands */
+.land-sale-section-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.land-sale-section-item {
+  background-color: #de5ad126;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.land-sale-section-location {
+  font-weight: bold;
+
+}
+
+.land-sale-section-sale-info {
+  color: #28a745;
+  font-weight: bold;
+}
+
+/* Buttons */
+.land-sale-section-cancel-btn,
+.land-sale-section-initiate-btn {
+  padding: 8px 12px;
+  margin-left: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.land-sale-section-cancel-btn:hover,
+.land-sale-section-initiate-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Input for Buyer Address */
+.land-sale-section-input {
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 180px;
+}
+
+.land-sale-section-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.land-sale-section-sale-input {
+  display: flex;
+  align-items: center;
+}
+
+/* Status Message */
+.land-sale-section-status {
+  text-align: center;
+  font-size: 16px;
+  margin-top: 20px;
+  color: #d9534f;
+}
+
+.land-sale-section-status.success {
+  color: #5bc0de;
+}
+
+.land-sale-section-status.error {
+  color: #d9534f;
+}
