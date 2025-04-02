@@ -25,7 +25,7 @@ const LandDetails = () => {
             });
         } catch (err) {
             console.error(err);
-            setError("Error fetching land details. Make sure the Token ID is correct.");
+            setError("Error fetching land details. Make sure the Token ID is correct and the MetaMask is connected.");
         }
     };
 
